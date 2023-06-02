@@ -1,0 +1,15 @@
+{
+  "folders": [
+	{
+		"name": "shoping",
+		"path": "../../백엔드/shoping"
+	},
+	{
+		"name": "dodomall",
+		"path": "dodomall"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "shoping"
+  }
+}

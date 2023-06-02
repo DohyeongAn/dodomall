@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dodomall_shopping_basket</title>
+
+    <!-- 구글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- 폰트어썸 -->
+    <script
+      src="https://kit.fontawesome.com/df1b18aebb.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- 부트스트렙 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <!-- 리셋 css -->
+    <link rel="stylesheet" href="resetcss.css" />
+
+    <!-- 메인 css -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- 쿼리 -->
+    <script src="jquery.min.js"></script>
+    <!-- 메인 js -->
+    <script src="shop.js"></script>
+  </head>
+  <body>
+    <div id="header"></div>
+    <div class="layout_frame" style="background: #fff">
+      <div class="layout_frame_inner">
+        <style>
+          .cart
+            .cart_item_list
+            .cart_item_wrap
+            .pro
+            input[type="checkbox"].hide {
+            display: none;
+          }
+
+          .cart {
+            position: relative;
+            overflow: hidden;
+            padding: 0px 40px;
+          }
+          .cart .cart_top {
+            margin-top: 60px;
+            position: relative;
+          }
+          .cart .cart_top h3 {
+            font-family: "Noto Sans KR", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-smooth: antialiased;
+            font-weight: bold;
+            font-size: 35px;
+            margin: 20px 0px;
+          }
+          .cart .cart_top h3 span {
+            font-size: 24px;
+            color: #ff0000;
+          }
+          .cart .cart_top .sub_txt {
+            font-size: 14px;
+            color: #666;
+            line-height: 20px;
+          }
+          .cart .cart_top .pross {
+            overflow: hidden;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            font-family: "Noto Sans KR", sans-serif;
+            font-weight: bold;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-smooth: antialiased;
+            font-weight: bold;
+          }
+          .cart .cart_top .pross li {
+            float: left;
+            padding: 10px 10px;
+          }
+          .cart .cart_top .pross li b {
+            font-size: 18px;
+          }
+          .cart .cart_top .pross li span {
+            font-size: 18px;
+          }
+          .cart .cart_top .pross .on {
+            color: #ff0000;
+          }
+          .cart .select_all_wrap {
+            margin: 20px 0px;
+            position: relative;
+          }
+          .cart .select_all_wrap .select_sec {
+            font-size: 11px;
+            font-family: "Noto Sans KR", sans-serif;
+            font-weight: bold;
+
+            line-height: 1;
+            color: #5b6065;
+            letter-spacing: -0.08em;
+          }
+          .cart .select_all_wrap .select_sec .select_all {
+            border: solid 1px #959da6;
+            height: 15px;
+            width: 15px;
+            vertical-align: -3px;
+          }
+          #sel_opt_del_btn {
+            position: absolute;
+            top: 0px;
+            right: 0;
+            margin-top: -1px;
+            padding: 8px 20px;
+            border: 1px solid #959da6;
+            font-size: 11px;
+            font-family: "Noto Sans KR", sans-serif;
+            font-weight: bold;
+
+            line-height: 1;
+            color: #5b6065;
+            letter-spacing: -0.08em;
+          }
+          #sel_opt_del_btn:hover {
+            border: solid 1px #ff5000;
+            color: #ff5000;
+          }
+
+          .cart .cart_item_list {
+            border-top: 1px solid #d6dadd;
+          }
+          .cart .cart_item_list .cart_item_wrap {
+            position: relative;
+            width: 100%;
+            background: #d6dadd;
+            border-bottom: 1px solid #d6dadd;
+            min-height: 160px;
+          }
+          .cart .cart_item_list .cart_item_wrap .pro {
+            position: relative;
+            width: 600px;
+            padding: 30px 30px 30px 204px;
+            background-color: #fff;
+            z-index: 100;
+            border-top: 1px solid #d6dadd;
+            min-height: 100px;
+          }
+          .cart .cart_item_list .cart_item_wrap .pro:first-child {
+            border-top-width: 0;
+          }
+          .cart .cart_item_list .cart_item_wrap .pro .chk_item {
+            display: inline-block;
+            overflow: hidden;
+            position: absolute;
+            top: 20px;
+            left: 15px;
+          }
+          .cart .cart_item_list .cart_item_wrap .pro input[type="checkbox"] {
+            width: 15px;
+            height: 15px;
+            background-color: #fff;
+            border: solid 1px #dcdcdc;
+          }
+          .cart .cart_item_list .cart_item_wrap .pro .it_info {
+            position: relative;
+            padding: 7px 0 10px;
+            margin-right: 5px;
+            font-size: 14px;
+            line-height: 20px;
+            color: #16181a;
+            font-family: "Noto Sans KR", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-smooth: antialiased;
+            font-weight: bold;
+
+          }
+          .cart .cart_item_list .cart_item_wrap .pro .it_info .it_description {
+            display: block;
+            margin-top: 5px;
+            font-size: 11px;
+            color: #959da6;
+            font-family: "Noto Sans KR", sans-serif;
+            font-weight: bold;
+
+          }
+          .cart .cart_item_list .cart_item_wrap .pro .it_img_wrap {
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: -150px;
+            width: 120px;
+            height: 80px;
+          }
+          .cart .cart_item_list .cart_item_wrap .pro .it_img_wrap img {
+            width: 100%;
+            height: auto;
+          }
+          .opt_chg_btn {
+            position: absolute;
+            top: 90px;
+            left: -150px;
+            display: block;
+            overflow: visible;
+            padding: 8px 40px;
+            border: 1px solid #959da6;
+            font-size: 11px;
+            font-family: "Noto Sans KR", sans-serif;
+            line-height: 1;
+            color: #5b6065;
+            letter-spacing: -0.08em;
+          }
+
+          .cart .it_opt_wrap {
+            position: relative;
+          }
+          .cart .it_opt_wrap .opt_id_wrap {
+            padding: 5px;
+            border-bottom: solid 1px #efefef;
+            position: relative;
+          }
+          .cart .it_opt_wrap .opt_id_wrap input[type="checkbox"] {
+            vertical-align: -3px;
+          }
+          .cart .it_opt_wrap .opt_id_wrap .opt_name {
+            display: inline-block;
+            width: 330px;
+            margin-top: 5px;
+            margin-right: 20px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #5b6065;
+            letter-spacing: -0.02em;
+            vertical-align: top;
+            word-wrap: break-word;
+          }
+          .cart .it_opt_wrap .opt_id_wrap .opt_count {
+            display: inline-block;
+            width: 95px;
+            vertical-align: middle;
+            overflow: hidden;
+          }
+          .cart .it_opt_wrap .opt_id_wrap .opt_count .opt_cnt {
+            float: left;
+            width: 32px;
+            height: 24px;
+            border: 1px solid #c2c7cc;
+            border-right: 0 none;
+            border-left: 0 none;
+            line-height: 24px;
+            color: #000;
+            text-align: center;
+            vertical-align: top;
+          }
+          .count_plus {
+            cursor: pointer;
+            float: left;
+            width: 24px;
+            height: 24px;
+            border: 1px solid #c2c7cc;
+            vertical-align: top;
+            background: url(./skin/demo/img/pl_mi.png) no-repeat;
+            background-position: -24px -0px;
+          }
+          .count_minus {
+            cursor: pointer;
+            float: left;
+            width: 24px;
+            height: 24px;
+            border: 1px solid #c2c7cc;
+            vertical-align: top;
+            background: url(./skin/demo/img/pl_mi.png) no-repeat;
+            background-position: -0px -0px;
+          }
+          .cart .it_opt_wrap .opt_id_wrap .opt_total_price_wrap {
+            display: inline-block;
+            width: 80px;
+            font-size: 12px;
+            text-align: right;
+            vertical-align: middle;
+          }
+          .cart .it_opt_wrap .opt_id_wrap .opt_delete {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+            padding: 0px;
+            width: 26px;
+            height: 26px;
+            background: url("./skin/demo/img/cart_del.png") no-repeat;
+          }
+
+          .cart .it_item_price_wrap {
+            display: -ms-flexbox;
+            display: flex;
+            background: #fff;
+            -ms-flex-align: center;
+            align-items: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            right: 132px;
+            width: 153px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+            min-height: 100%;
+          }
+          .cart .it_delivery_price_wrap {
+            right: 0;
+            width: 131px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+            min-height: 100%;
+            display: -ms-flexbox;
+            display: flex;
+            background: #fff;
+            -ms-flex-align: center;
+            align-items: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+          }
+          .cart .it_item_price_wrap .it_item_price {
+            display: inline-block;
+            font-family: "Noto Sans KR", sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: #16181a;
+          }
+          .cart .it_delivery_price_wrap .it_delivery_price {
+            font-size: 14px;
+            line-height: 55px;
+          }
+
+          .cart .cart_none {
+            border: solid 1px #efefef;
+            padding: 180px 30px 0px;
+            height: 230px;
+            text-align: center;
+          }
+          .cart .cart_none .txt {
+            display: block;
+            font-size: 24px;
+            font-family: "Noto Sans KR", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-smooth: antialiased;
+            font-weight: bold;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+          }
+          .cart .cart_none .txt2 {
+            color: #6c7580;
+            letter-spacing: -1px;
+          }
+
+          .cart .total_price_wrap {
+            border-top: solid 1px #666;
+            border-bottom: solid 1px #dcdcdc;
+            background-color: #fff;
+            padding: 10px;
+          }
+          .cart .total_price_wrap .total_price_left {
+            float: left;
+            width: 50%;
+          }
+          .cart .total_price_wrap .total_price_left .total_title {
+            font-size: 25px;
+            display: inline-block;
+            margin-top: 30px;
+            font-family: "Noto Sans KR", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-smooth: antialiased;
+            font-weight: bold;
+          }
+          .cart .total_price_wrap .total_price_right {
+            float: right;
+            width: 300px;
+            padding: 0px 0px;
+          }
+          .cart .total_price_wrap .total_price_right ul {
+            width: 100%;
+          }
+          .cart .total_price_wrap .total_price_right ul li {
+            border-bottom: solid 1px #dcdcdc;
+            padding: 15px 0px;
+          }
+          .cart .total_price_wrap .total_price_right .tit {
+            width: 109px;
+            display: inline-block;
+            font-size: 15px;
+          }
+
+          .cart .total_price_wrap .total_price_right ul li:last-child {
+            border-bottom: none;
+          }
+
+          #item_total_price {
+            width: 150px;
+            display: inline-block;
+            text-align: right;
+            color: #4d5454;
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            font-size: 19px;
+            font-family: "Noto Sans KR", sans-serif;
+          }
+          #delivery_total_price {
+            width: 150px;
+            display: inline-block;
+            text-align: right;
+            color: #4d5454;
+            font-size: 12px;
+            font-family: "Noto Sans KR", sans-serif;
+            font-weight: bold;
+            color: #000;
+            font-size: 19px;
+            font-family: "Noto Sans KR", sans-serif;
+          }
+
+          .cart .last_price {
+            border-top: solid 1px #efefef;
+            padding: 25px 0px;
+            overflow: hidden;
+          }
+          .cart .last_price .pricetit {
+            float: left;
+            font-size: 25px;
+            color: #e61b62;
+            font-family: "Noto Sans KR", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-smooth: antialiased;
+            font-weight: normal;
+          }
+          .cart .last_price .ct_tot {
+            float: right;
+            color: #e61b62;
+            font-size: 24px;
+            padding: 0px 10px 0px 0px;
+          }
+          #cart_total_price {
+            color: #e61b62;
+            font-size: 36px;
+            font-weight: bold;
+            font-family: "Noto Sans KR", sans-serif;
+          }
+
+          .btn_wrap {
+            padding: 107px 0 80px;
+            position: relative;
+            width: 100%;
+            font-size: 24px;
+            text-align: center;
+          }
+          .btn_wrap .shop_ing_btn {
+            display: inline-block;
+            width: 276px;
+            height: 64px;
+            line-height: 64px;
+            border: solid 1px #e61b62;
+            color: #e61b62;
+            font-family: "Noto Sans KR", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-smooth: antialiased;
+            font-weight: bold;
+          }
+          .btn_wrap .cart_order_btn {
+            display: inline-block;
+            width: 276px;
+            height: 64px;
+            line-height: 64px;
+            margin-left: 8px;
+            background-color: #e61b62;
+            border: solid 1px #e61b62;
+            color: #fff;
+            font-family: "Noto Sans KR", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-smooth: antialiased;
+            font-weight: bold;
+          }
+          .btn_wrap .cart_order_btn:hover {
+            color: #fff;
+          }
+        </style>
+
+        <div class="cart">
+          <div class="cart_top">
+            <h3 class="">장바구니<span>(0)</span></h3>
+            <div class="sub_txt">
+              결제하기 전 옵션 및 수량 등을 꼭 확인해주세요.
+            </div>
+            <div class="pross">
+              <ul>
+                <li><b class="on">01</b> <span class="on">장바구니</span></li>
+                <li class="on">&gt;</li>
+                <li><b>02</b> <span>주문 /결제</span></li>
+                <li>&gt;</li>
+                <li><b>03</b> <span>결제완료</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <form method="post" id="fcart" autocomplete="off">
+            <input type="hidden" name="mode" id="mode" value="checkbox" />
+
+            <div class="select_all_wrap">
+              <div class="select_sec">
+                <input
+                  type="checkbox"
+                  checked="checked"
+                  id="select_all"
+                  class="chk select_all"
+                />
+                <label for="select_all"
+                  >전체선택 ( 총
+                  <strong class="cnt"><i class="num chk_count">0</i> / 0</strong
+                  >개 )</label
+                >
+              </div>
+              <a id="sel_opt_del_btn"> 전체삭제</a>
+            </div>
+
+            <div class="cart_none">
+              <span class="txt">카트에 담긴 상품이 없습니다.</span>
+              <span class="txt2"
+                >로그인을 하시면 카트에 보관된 상품을 확인하실 수
+                있습니다.</span
+              >
+            </div>
+          </form>
+
+          <div class="total_price_wrap">
+            <div class="total_price_left">
+              <span class="total_title">총 주문금액</span>
+            </div>
+            <div class="total_price_right">
+              <ul>
+                <li>
+                  <span class="tit">총 상품금액</span>
+                  <em id="item_total_price"></em>원
+                </li>
+                <li>
+                  <span class="tit">총 배송비</span>
+                  <em id="delivery_total_price"></em>원
+                </li>
+              </ul>
+            </div>
+            <div style="clear: both"></div>
+            <div class="last_price">
+              <div class="pricetit">결제 예상금액</div>
+              <div class="ct_tot"><em id="cart_total_price"></em> 원</div>
+            </div>
+          </div>
+
+          <div class="btn_wrap">
+            <a href="index.php" class="shop_ing_btn">쇼핑계속하기</a>
+            <a href="cart_order.php" class="cart_order_btn">구매하기</a>
+          </div>
+        </div>
+
+        <script>
+          // 전체삭제
+          $(document).on("click", "#sel_opt_del_btn", function () {
+            if (!$(".it_opt_wrap .chk:checked").length) {
+              alert("삭제할 옵션을 선택해주세요");
+            } else {
+              if (confirm("선택하신 옵션을 삭제하시겠습니까?")) {
+                $("#mode").val("chk_opt_delete");
+                $.ajax({
+                  type: "post",
+                  data: $("#fcart").serialize(),
+                  url: "cart.php",
+                  success: function (response) {
+                    var json = $.parseJSON(response);
+                    if (json["result"] == "ok") {
+                      document.location.reload();
+                    }
+                  },
+                });
+              }
+            }
+          });
+
+          // 전체선택
+          $(document).on("click", "#select_all", function () {
+            $(".chk").prop("checked", this.checked);
+            if ($("#select_all").is(":checked")) {
+              $("#sel_opt_del_btn").html("전체삭제");
+            } else {
+              $("#sel_opt_del_btn").html("선택삭제");
+            }
+          });
+
+          // 상품선택
+          $(document).on("click", ".chk_item", function () {
+            $(".chk_item_" + $(this).val()).prop("checked", this.checked);
+          });
+
+          // 옵션삭제
+          $(document).on("click", ".opt_delete", function () {
+            var it_id = $(this).data("it_id");
+            var opt_id = $(this).data("opt_id");
+            var opt_name = $(this).data("opt_name");
+            if (confirm("선택하신 옵션을 삭제하시겠습니까?\n" + opt_name)) {
+              $.post(
+                "cart.php",
+                { mode: "opt_delete", it_id: it_id, opt_id: opt_id },
+                function (response) {
+                  var json = $.parseJSON(response);
+                  if (json["result"] == "ok") {
+                    document.location.reload();
+                  } else {
+                    alert("상품 삭제에 실패하였습니다");
+                  }
+                }
+              );
+            }
+          });
+
+          // 체크박스 상태변경
+          $(document).on("click", ".chk", function () {
+            if (!$(this).is(":checked")) {
+              $("#sel_opt_del_btn").html("선택삭제");
+            }
+            $(".chk_count").html($(".chk_item:checked").length);
+            $.ajax({
+              type: "post",
+              data: $("#fcart").serialize(),
+              url: "cart.php",
+              success: function (response) {
+                var json = $.parseJSON(response);
+                if (json["result"] == "ok") {
+                  cart_info(json);
+                }
+              },
+            });
+          });
+
+          // 옵션수량변경
+          $(document).on(
+            "click blur change",
+            ".cart_item_list .opt_cnt_btn",
+            function () {
+              if ($(this).hasClass("opt_cnt")) {
+                // 직접변경
+                var opt_obj = $(this);
+              } else {
+                var opt_obj = $(this).parent().find(".opt_cnt");
+              }
+              var it_buy_qty_min = parseInt(opt_obj.data("it_buy_qty_min")); // 최소구매수량
+              var it_buy_qty_max = parseInt(opt_obj.data("it_buy_qty_max")); // 최대구매수량
+              var it_buy_qty_type = opt_obj.data("it_buy_qty_type"); // 1제한없음 2구매제한
+              var it_stock_type = opt_obj.data("it_stock_type"); // 1무한정판매 2재고량에따름
+              var it_gp_cnt = parseInt(opt_obj.data("it_gp_cnt")); // 몇개씩 증가
+              var it_opt_cnt = parseInt(opt_obj.data("it_opt_cnt")); // 기본옵션갯수
+              var ea_opt_cnt = parseInt(opt_obj.val()); // 수량
+              var ea_stock = parseInt(opt_obj.data("stock")); // 재고수량
+              var opt_id = opt_obj.data("opt_id"); // 옵션아이디
+              var opt_price = opt_obj.data("price"); // 판매가격
+              var it_id = opt_obj.data("it_id"); // 상품코드
+              if ($(this).hasClass("count_plus")) {
+                // 더하기
+                ea_opt_cnt = ea_opt_cnt + it_gp_cnt;
+                if (
+                  it_buy_qty_type == 2 &&
+                  opt_cnt_total("cart_item_list", it_id) + it_gp_cnt >
+                    it_buy_qty_max
+                ) {
+                  alert(
+                    "해당상품의 1인당 최대 구매 수량은 " +
+                      it_buy_qty_max +
+                      "개 입니다.\n구매 수량을 확인해주세요."
+                  );
+                  ea_opt_cnt = ea_opt_cnt - it_gp_cnt;
+                }
+                if (ea_opt_cnt > ea_stock) {
+                  ea_stock = ea_stock - it_buy_qty_min;
+                  ea_stock =
+                    Math.floor(ea_stock / it_gp_cnt) * it_gp_cnt +
+                    it_buy_qty_min;
+                  alert(
+                    "해당옵션은 최대 " + ea_stock + "개 까지 구매가능합니다"
+                  );
+                  ea_opt_cnt = ea_stock;
+                }
+              }
+              if ($(this).hasClass("count_minus")) {
+                // 빼기
+                ea_opt_cnt = ea_opt_cnt - it_gp_cnt;
+                if (ea_opt_cnt < it_buy_qty_min) {
+                  ea_opt_cnt = it_buy_qty_min;
+                }
+              }
+              if ($(this).hasClass("opt_cnt")) {
+                // 직접변경
+                if (
+                  isNaN(ea_opt_cnt) ||
+                  ea_opt_cnt < it_buy_qty_min ||
+                  !ea_opt_cnt
+                ) {
+                  // 숫자가아니거나 최소구매수량보다 작거나 값이없으면
+                  ea_opt_cnt = it_buy_qty_min;
+                }
+                if ((ea_opt_cnt - it_buy_qty_min) % it_gp_cnt != 0) {
+                  alert("옵션은 " + it_gp_cnt + "개 단위로 주문이 가능합니다");
+                  ea_opt_cnt = it_buy_qty_min;
+                }
+                if (
+                  it_buy_qty_type == 2 &&
+                  opt_cnt_total("cart_item_list", it_id) > it_buy_qty_max
+                ) {
+                  alert(
+                    "해당상품의 1인당 최대 구매 수량은 " +
+                      it_buy_qty_max +
+                      "개 입니다.\n구매 수량을 확인해주세요."
+                  );
+                  ea_opt_cnt = it_buy_qty_min;
+                }
+                if (ea_opt_cnt > ea_stock) {
+                  ea_stock = ea_stock - it_buy_qty_min;
+                  ea_stock =
+                    Math.floor(ea_stock / it_gp_cnt) * it_gp_cnt +
+                    it_buy_qty_min;
+                  alert(
+                    "해당옵션은 최대 " + ea_stock + "개 까지 구매가능합니다"
+                  );
+                  ea_opt_cnt = ea_stock;
+                }
+              }
+              opt_obj.val(ea_opt_cnt);
+              opt_total_price = opt_price * ea_opt_cnt;
+              $("#opt_id_" + opt_id + " .opt_total_price").html(
+                number_format(opt_total_price)
+              );
+              $.ajax({
+                type: "post",
+                url: "cart.php",
+                data: {
+                  mode: "opt_change",
+                  opt_id: opt_id,
+                  opt_cnt: ea_opt_cnt,
+                },
+                cache: false,
+                async: false,
+                success: function (response) {
+                  var json = $.parseJSON(response);
+                  if (json["result"] == "ok") {
+                    cart_info(json);
+                  } else {
+                    alert(json["msg"]);
+                    location.reload();
+                  }
+                },
+              });
+            }
+          );
+
+          // 전송방지
+          $(document).on("submit", "#fcart", function () {
+            event.preventDefault();
+          });
+
+          // 카트 업데이트
+          function cart_info(json) {
+            if (json["item"]) {
+              $.each(json["item"], function (key, value) {
+                it_id = value["it_id"];
+                $("#it_id_" + it_id + " .it_item_price").html(
+                  value["item_price"]
+                );
+                $("#it_id_" + it_id + " .it_delivery_price").html(
+                  value["delivery_text"]
+                );
+                $("#it_id_" + it_id + " .it_total_price").html(
+                  value["total_price"]
+                );
+              });
+            }
+            $("#item_total_price").html(json["item_total_price"]);
+            $("#delivery_total_price").html(json["delivery_total_price"]);
+            $("#cart_total_price").html(json["cart_total_price"]);
+          }
+        </script>
+
+        <style>
+          .opt_chg_bg {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            overflow-y: auto;
+            display: none;
+          }
+          .opt_chg_box {
+            position: absolute;
+            margin: -350px 0 0 -250px;
+            top: 50%;
+            left: 50%;
+            background-color: #fff;
+            border: 1px solid #c2c7cc;
+            width: 500px;
+            min-height: 500px;
+            z-index: 1001;
+            padding: 39px 30px 40px;
+          }
+          .pro_opt_pop {
+            position: relative;
+            min-height: 80px;
+            margin-top: 30px;
+          }
+          .pro_opt_pop .prod_thumb {
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            position: absolute;
+            width: 120px;
+            height: 80px;
+          }
+          .pro_opt_pop .prod_thumb img {
+            width: 100%;
+          }
+          .pro_opt_pop .it_name {
+            display: block;
+            margin-left: 149px;
+            padding-top: 10px;
+            letter-spacing: -0.08em;
+            font-family: "Noto Sans KR", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-smooth: antialiased;
+            font-weight: normal;
+          }
+          .pro_opt_pop .it_description {
+            margin-left: 149px;
+            margin-top: 10px;
+            display: block;
+            font-size: 11px;
+            color: #959da6;
+            font-family: "Noto Sans KR", sans-serif;
+          }
+          .opt_chg_close_wrap {
+            text-align: right;
+          }
+          .opt_chg_submit_wrap {
+            text-align: center;
+            margin-top: 30px;
+          }
+          .opt_title1 {
+            margin-top: 30px;
+            font-size: 16px;
+            color: #000;
+            padding-left: 5px;
+          }
+          .opt_chg_result {
+            margin-top: 10px;
+          }
+          .opt_chg_submit_btn {
+            display: inline-block;
+            width: 136px;
+            height: 42px;
+            border: 1px solid #ff5000;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 42px;
+            text-align: center;
+            margin-left: 6px;
+            background-color: #e61b62;
+            color: #fff;
+          }
+          .opt_chg_submit_btn:hover {
+            color: #fff;
+          }
+          .opt_chg_close_btn_bottom {
+            display: inline-block;
+            width: 136px;
+            height: 42px;
+            border: 1px solid #ff5000;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 42px;
+            text-align: center;
+          }
+          .opt_chg_close_btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            background: url(/admin/img/closeicon.gif) no-repeat 50% 50%;
+            text-indent: -9000px;
+            width: 22px;
+            height: 22px;
+            opacity: 1;
+          }
+
+          /* 장바구니담기 팝업 */
+          #cart_popup {
+            position: fixed;
+            left: 0px;
+            top: -280px;
+            width: 100%;
+            z-index: 99999;
+            display: none;
+          }
+          #cart_popup div {
+            background-color: rgba(0, 0, 0, 0.8);
+            margin: 0 auto;
+            width: 300px;
+            text-align: center;
+            padding: 30px 0px;
+            font-family: "Noto Sans KR", sans-serif;
+          }
+          #cart_popup p {
+            margin-bottom: 10px;
+            display: block;
+            font-size: 16px;
+            color: #fff;
+            font-weight: bold;
+          }
+          #cart_popup a {
+            background-color: #e83862;
+            height: 30px;
+            line-height: 30px;
+            display: block;
+            width: 150px;
+            color: #fff;
+            margin: 0 auto;
+            font-family: "Noto Sans KR", sans-serif;
+          }
+        </style>
+
+        <!-- 옵션변경레이어 -->
+        <div class="opt_chg_bg">
+          <div class="opt_chg_box">
+            <div class="opt_chg_close_wrap">
+              <a class="opt_chg_close_btn"></a>
+            </div>
+            <div class="pro_opt_pop">
+              <a href="#self">
+                <span class="it_name"></span>
+                <span class="it_description"></span>
+                <div class="prod_thumb">
+                  <img src="./img/noimg_s.png" class="it_img" />
+                </div>
+              </a>
+            </div>
+            <div class="opt_title1">옵션 변경 / 추가</div>
+            <div class="opt_chg_result">결과값</div>
+            <div class="opt_chg_submit_wrap">
+              <a class="opt_chg_submit_btn">변경</a>
+            </div>
+          </div>
+        </div>
+        <!-- //옵션변경레이어 -->
+
+        <!-- 장바구니담기팝업 -->
+        <div id="cart_popup">
+          <div>
+            <p>장바구니에 상품이 담겼습니다.</p>
+            <a href="cart.php">구매하러가기</a>
+          </div>
+        </div>
+        <!-- 장바구니담기팝업 -->
+
+        <script>
+          $(document).on("click", ".opt_chg_btn", function () {
+            $(".pro_opt_pop a .it_name").html($(this).data("it_name"));
+            $(".pro_opt_pop a .it_description").html(
+              $(this).data("it_description")
+            );
+            $(".pro_opt_pop .it_img").attr("src", $(this).data("it_img"));
+
+            $(".pro_opt_pop a").attr(
+              "href",
+              "item.php?it_id=" + $(this).data("it_id")
+            );
+
+            $.ajax({
+              type: "post",
+              url: "opt_popup.php",
+              data: {
+                it_id: $(this).data("it_id"),
+              },
+              cache: false,
+              async: false,
+              success: function (response) {
+                $(".opt_chg_bg").show();
+                $(".opt_chg_result").html(response);
+              },
+            });
+          });
+
+          $(document).on("click", ".opt_chg_submit_btn", function () {
+            $("#move").val("opt_popup");
+            $.ajax({
+              type: "post",
+              url: "cart.php",
+              cache: false,
+              data: $("#item_frm").serialize(),
+              success: function (response) {
+                var json = $.parseJSON(response);
+                if (json["result"] == "ok") {
+                  document.location.reload();
+                } else {
+                  alert(json["msg"]);
+                }
+              },
+            });
+          });
+
+          $(document).on("click", ".opt_chg_close_btn", function () {
+            $(".opt_chg_bg").hide();
+            $(".opt_chg_result").html("");
+          });
+        </script>
+
+        <script>
+          // 옵션수량 증가 및 차감
+          $(document).on(
+            "blur change click",
+            ".opt_popup .append_count a, .opt_popup .append_count .opt_cnt",
+            function () {
+              if ($(this).hasClass("opt_cnt")) {
+                var obj = $(this);
+              } else {
+                var obj = $(this).parent().find(".opt_cnt");
+              }
+              var it_buy_qty_min = parseInt(obj.data("it_buy_qty_min")); // 최소구매수량
+              var it_buy_qty_max = parseInt(obj.data("it_buy_qty_max")); // 최대구매수량
+              var it_buy_qty_type = obj.data("it_buy_qty_type"); // 1제한없음 2구매제한
+              var it_stock_type = obj.data("it_stock_type"); // 1무한정판매 2재고량에따름
+              var it_gp_cnt = parseInt(obj.data("it_gp_cnt")); // 몇개씩 증가
+              var it_opt_cnt = parseInt(obj.data("it_opt_cnt")); // 기본옵션갯수
+              var ea_opt_cnt = parseInt(obj.val()); // 수량
+              var ea_stock = parseInt(obj.data("stock")); // 재고수량
+              var opt_id = parseInt(obj.data("opt_id")); // 옵션아이디
+              var it_id = parseInt(obj.data("it_id")); // 상품코드
+
+              if ($(this).hasClass("count_plus")) {
+                ea_opt_cnt = ea_opt_cnt + it_gp_cnt;
+                if (
+                  it_buy_qty_type == 2 &&
+                  opt_cnt_total("opt_popup", it_id) + it_gp_cnt > it_buy_qty_max
+                ) {
+                  alert(
+                    "해당상품의 1인당 최대 구매 수량은 " +
+                      it_buy_qty_max +
+                      "개 입니다.\n구매 수량을 확인해주세요."
+                  );
+                  ea_opt_cnt = ea_opt_cnt - it_gp_cnt;
+                }
+                if (ea_opt_cnt > ea_stock) {
+                  ea_stock = ea_stock - it_buy_qty_min;
+                  ea_stock =
+                    Math.floor(ea_stock / it_gp_cnt) * it_gp_cnt +
+                    it_buy_qty_min;
+                  alert(
+                    "해당옵션은 최대 " + ea_stock + "개 까지 구매가능합니다"
+                  );
+                  ea_opt_cnt = ea_stock;
+                }
+              }
+              if ($(this).hasClass("count_minus")) {
+                ea_opt_cnt = ea_opt_cnt - it_gp_cnt;
+                if (ea_opt_cnt < it_buy_qty_min) {
+                  ea_opt_cnt = it_buy_qty_min;
+                }
+              }
+              if ($(this).hasClass("opt_cnt")) {
+                if (
+                  isNaN(ea_opt_cnt) ||
+                  ea_opt_cnt < it_buy_qty_min ||
+                  !ea_opt_cnt
+                ) {
+                  // 숫자가아니거나 최소구매수량보다 작거나 값이없으면
+                  ea_opt_cnt = it_buy_qty_min;
+                }
+                if ((ea_opt_cnt - it_buy_qty_min) % it_gp_cnt != 0) {
+                  alert("옵션은 " + it_gp_cnt + "개 단위로 주문이 가능합니다");
+                  ea_opt_cnt = it_buy_qty_min;
+                }
+                if (
+                  it_buy_qty_type == 2 &&
+                  opt_cnt_total("opt_popup", it_id) > it_buy_qty_max
+                ) {
+                  alert(
+                    "해당상품의 1인당 최대 구매 수량은 " +
+                      it_buy_qty_max +
+                      "개 입니다.\n구매 수량을 확인해주세요."
+                  );
+                  ea_opt_cnt = it_buy_qty_min;
+                }
+                if (ea_opt_cnt > ea_stock) {
+                  ea_stock = ea_stock - it_buy_qty_min;
+                  ea_stock =
+                    Math.floor(ea_stock / it_gp_cnt) * it_gp_cnt +
+                    it_buy_qty_min;
+                  alert(
+                    "해당옵션은 최대 " + ea_stock + "개 까지 구매가능합니다"
+                  );
+                  ea_opt_cnt = ea_stock;
+                }
+              }
+              $(".append_box" + opt_id + " .opt_cnt").val(ea_opt_cnt);
+              cal_total();
+            }
+          );
+          // 옵션삭제
+          $(document).on("click", ".opt_del", function () {
+            var opt_id = $(this).data("opt_id");
+            $(".append_box" + opt_id).remove();
+            if (!$(".basic").length) {
+              $(".opt_cal_list").html(""); // 마지막남은 기본옵션이라면 모두삭제
+              $(".opt_list ul li").removeClass("on"); // 모든체크박스삭제
+            }
+            // 해당옵션 체크상태 삭제
+            $(".opt_popup").each(function (index) {
+              $(this)
+                .find("#opt_li_" + opt_id)
+                .removeClass("on");
+            });
+            cal_total();
+          });
+          // 총구매금액계산
+          function cal_total() {
+            var opt_cal_total_span = 0;
+            var ea_price = 0;
+            $(".opt_cal_list:eq(0) .opt_cnt").each(function () {
+              ea_price =
+                parseInt($(this).data("price")) * parseInt($(this).val());
+              opt_cal_total_span += ea_price;
+              $(".append_box" + $(this).data("opt_id") + " .append_price").html(
+                number_format(ea_price) + "<b>원</b>"
+              );
+            });
+            $(".opt_cal_total_span").html(number_format(opt_cal_total_span));
+            if (!$(".append_box").length) {
+              $(".opt_cal_total").addClass("hide");
+              $(".opt_cart_order_btn").removeClass("on");
+            } else {
+              $(".opt_cal_total").removeClass("hide");
+              $(".opt_cart_order_btn").addClass("on");
+              $(".opt_cal_list").show();
+            }
+          }
+          // 타이틀선택
+          $(document).on("click", ".opt_title", function () {
+            // 추가옵션을 클릭했을때 기본옵션이 없으면 체크
+            if ($(this).hasClass("aopt_title")) {
+              if ($(".basic").length < 1) {
+                alert("기본옵션을 먼저 선택해주세요");
+                return;
+              }
+            }
+            // 목록 보이고 닫기
+            var opt_index = $(".opt_title").index(this);
+
+            if ($(".opt_list:eq(" + opt_index + ")").css("display") == "none") {
+              // 옵션이 닫혀있으면
+              // 목록에 옵션이 선택되었다는 체크추가
+              $(".opt_popup .opt_id").each(function () {
+                var opt_li_val = $(this).val();
+                $(".opt_popup").each(function (index) {
+                  $(this)
+                    .find("#opt_li_" + opt_li_val)
+                    .addClass("on");
+                });
+              });
+              // 목록값이 있는지체크
+              if ($.trim($(".opt_ul:eq(" + opt_index + ")").html())) {
+                $(".opt_list").hide();
+                $(".opt_list:eq(" + opt_index + ")").show(); // 해당목록값출력
+              }
+              $(".opt_cal_list").css("min-height", "150px");
+            } else {
+              // 옵션목록값닫을때
+              $(".opt_list").hide();
+              $(".opt_cal_list").css("min-height", "auto");
+            }
+          });
+          // 옵션선택
+          $(document).on("click", ".opt_list li", function () {
+            var it_buy_qty_type = $(this).data("it_buy_qty_type");
+            var it_buy_qty_min = parseInt($(this).data("it_buy_qty_min"));
+            var it_buy_qty_max = parseInt($(this).data("it_buy_qty_max"));
+            var it_gp_cnt = parseInt($(this).data("it_gp_cnt"));
+            var it_opt_cnt = parseInt($(this).data("it_opt_cnt"));
+            var it_stock_type = parseInt($(this).data("it_stock_type"));
+            var opt_soldout = $(this).data("opt_soldout");
+            var opt_tobe = $(this).data("opt_tobe");
+            var opt_id = $(this).data("opt_id");
+            var opt_name = $(this).data("opt_name");
+            var opt_stock = parseInt($(this).data("opt_stock"));
+            var price = $(this).data("opt_price2");
+            var depth = parseInt($(this).data("depth"));
+            var next_depth = parseInt($(this).data("depth")) + 1;
+            var basic = $(this).data("basic");
+            var opt_index = depth - 1;
+            var it_id = $(this).data("it_id");
+            var opt_value = $(this).data("opt_value");
+
+            // 기본옵션 선택할때 타이틀값 기본으로 설정
+            if (basic) {
+              $(".opt_popup").each(function (index) {
+                for (var i = depth; i < it_opt_cnt; i++) {
+                  $(this)
+                    .find(".opt_basic .opt_title:eq(" + i + ")")
+                    .html(
+                      $(".opt_basic .opt_title:eq(" + i + ")").data("opt_name")
+                    );
+                }
+              });
+            }
+            if ($(this).hasClass("opt_tobe")) {
+              alert("선택하신 옵션은 입고예정인 옵션입니다");
+              return;
+            }
+            if ($(this).hasClass("opt_soldout")) {
+              alert("선택하신 옵션은 재고가 없습니다");
+              return;
+            }
+            if (depth == it_opt_cnt || !basic) {
+              // 마지막옵션선택이거나 추가옵션이면
+              var is_select = 0;
+              $(".opt_popup .opt_id").each(function () {
+                if ($(this).val() == opt_id) {
+                  is_select = 1;
+                }
+              });
+              if (is_select) {
+                alert("이미 선택하신 옵션입니다");
+                return;
+              }
+              if (
+                opt_cnt_total("opt_popup", it_id) + it_buy_qty_min >
+                it_buy_qty_max
+              ) {
+                alert(
+                  "해당상품의 1인당 최대 구매 수량은 " +
+                    it_buy_qty_max +
+                    "개 입니다.\n구매 수량을 확인해주세요."
+                );
+                return;
+              }
+            }
+            $(".opt_list").hide(); // 옵션 리스트 제거
+            $(".opt_popup").each(function (index) {
+              $(this)
+                .find(".opt_title:eq(" + opt_index + ")")
+                .html(opt_name); // 선택된 옵션명 지정
+            });
+            $(".opt_select").removeClass("on"); // 옵션 선택상태 제거
+
+            $(".opt_cal_list").css("min-height", "auto"); // 옵션 높이 수정
+
+            if (depth == it_opt_cnt || !basic) {
+              // 마지막옵션선택이거나 추가옵션이면
+              if (basic == "1") {
+                // 기본옵션이면
+                $(".opt_popup").each(function (index) {
+                  $(this).find(".opt_select:eq(0)").addClass("on"); // 첫번째셀렉트선택
+                });
+                var append_opt_name = opt_value; // 옵션명지정
+                var class_basic = " basic"; // 클래스명추가
+              } else {
+                // 추가옵션이면
+
+                var append_opt_name = opt_name; // 옵션명지정
+                var class_basic = "";
+              }
+              // 기본옵션의 옵션목록값 삭제(2차분류이상)
+              $(".opt_popup").each(function (index) {
+                for (
+                  var i = 1;
+                  i < $(this).find(".opt_basic .opt_ul").length;
+                  i++
+                ) {
+                  $(this)
+                    .find(".opt_basic .opt_ul:eq(" + i + ")")
+                    .html("");
+                }
+              });
+              // 옵션명 초기화
+              $(".opt_title").each(function () {
+                $(this).html($(this).data("opt_name"));
+              });
+              if (it_stock_type == "1") {
+                // 판매재고 무한정판매일경우
+                opt_stock = "9999999";
+              }
+              if (
+                opt_tobe == "1" ||
+                opt_soldout == "2" ||
+                (it_buy_qty_type == "2" && opt_stock < it_buy_qty_min)
+              ) {
+                opt_stock = "0";
+              }
+              template = _.template($("#opt_append_script").html());
+              var template_html = template({
+                opt_id: opt_id,
+                class_basic: class_basic,
+                append_opt_name: append_opt_name,
+                price: price,
+                opt_stock: opt_stock,
+                it_buy_qty_max: it_buy_qty_max,
+                it_buy_qty_min: it_buy_qty_min,
+                it_opt_cnt: it_opt_cnt,
+                it_buy_qty_type: it_buy_qty_type,
+                it_gp_cnt: it_gp_cnt,
+                it_stock_type: it_stock_type,
+                it_id: it_id,
+              });
+              $(".opt_cal_list").append(template_html);
+              cal_total(); // 합산금액
+            } else {
+              // 다음셀렉트 선택
+              $(".opt_popup").each(function (index) {
+                $(this)
+                  .find(".opt_select:eq(" + depth + ")")
+                  .addClass("on");
+              });
+              // 다음선택옵션 불러옴
+              $.ajax({
+                type: "get",
+                url: nfor_path + "/opt_popup.php",
+                data:
+                  "json=option&it_id=" +
+                  it_id +
+                  "&opt_id=" +
+                  opt_id +
+                  "&depth=" +
+                  next_depth,
+                dataType: "json",
+                cache: false,
+                success: function (data) {
+                  template = _.template($("#opt_li_script").html());
+                  var template_html = "";
+                  for (var i = 0; i < data.list.length; i++) {
+                    template_html += template({
+                      opt_value: data.list[i].opt_value,
+                      opt_tobe: data.list[i].opt_tobe,
+                      opt_soldout: data.list[i].opt_soldout,
+                      it_stock_type: data.list[i].it_stock_type,
+                      opt_id: data.list[i].opt_id,
+                      opt_name: data.list[i].opt_name,
+                      opt_stock: data.list[i].opt_stock,
+                      depth: data.list[i].depth,
+                      opt_price2: data.list[i].opt_price2,
+                      opt_price2_echo: data.list[i].opt_price2_echo,
+                      basic: data.list[i].basic,
+                      it_buy_qty_min: data.list[i].it_buy_qty_min,
+                      it_buy_qty_max: data.list[i].it_buy_qty_max,
+                      it_opt_cnt: data.list[i].it_opt_cnt,
+                      it_buy_qty_type: data.list[i].it_buy_qty_type,
+                      it_gp_cnt: data.list[i].it_gp_cnt,
+                      it_id: data.list[i].it_id,
+                    });
+                  }
+                  $(".ul_opt" + next_depth).html(template_html);
+                },
+                error: function () {
+                  console.log("Ajax failed");
+                },
+              });
+            }
+          });
+        </script>
+        <script type="text/html" id="opt_li_script">
+          <li <% if(it_opt_cnt==depth){ %>id="opt_li_<%=opt_id%>" class="<% if(opt_soldout=="2"){ %>opt_soldout<% } %> <% if(opt_tobe=="1"){ %>opt_tobe<% } %>" data-opt_value="<%=opt_value%>" data-opt_soldout="<%=opt_soldout%>" data-opt_tobe="<%=opt_tobe%>" data-opt_stock="<%=opt_stock%>"<% } %> data-depth="<%=depth%>" data-opt_id="<%=opt_id%>" data-opt_name="<%=opt_name%>" data-opt_price2="<%=opt_price2%>" data-it_gp_cnt="<%=it_gp_cnt%>" data-it_opt_cnt="<%=it_opt_cnt%>" data-it_buy_qty_min="<%=it_buy_qty_min%>" data-it_buy_qty_max="<%=it_buy_qty_max%>" data-it_stock_type="<%=it_stock_type%>" data-it_buy_qty_type="<%=it_buy_qty_type%>" data-it_id="<%=it_id%>" <% if(basic==1){ %> data-basic="1"<% } %>>
+            <div>
+              <%=opt_name%>
+              <% if(it_opt_cnt==depth){ %>
+
+                <% if(opt_tobe=="1"){ %>
+                  (입고예정)
+                <% } else{ %>
+                  <% if(opt_soldout=="2"){ %>(품절)<% } else{ %><% if(it_stock_type=="2"){ %> - 남은수량 : <%=opt_stock%>개<% } %><% } %>
+                <% } %>
+
+              <% } %>
+            </div>
+            <% if(it_opt_cnt==depth){ %>
+            <b><%=opt_price2_echo%><span>원</span></b>
+            <% } %>
+          </li>
+        </script>
+        <script type="text/html" id="opt_append_script">
+          <div class="append_box append_box<%=opt_id%>">
+            <input
+              type="hidden"
+              name="opt_id[]"
+              class="opt_id <%=class_basic%>"
+              value="<%=opt_id%>"
+            />
+            <p class="append_opt_name"><%=append_opt_name%></p>
+            <p class="append_count">
+              <a class="count_minus"></a>
+              <input
+                type="number"
+                pattern="[0-9]*"
+                name="opt_cnt[]"
+                value="<%=it_buy_qty_min%>"
+                class="opt_cnt"
+                data-it_buy_qty_min="<%=it_buy_qty_min%>"
+                data-it_buy_qty_max="<%=it_buy_qty_max%>"
+                data-opt_id="<%=opt_id%>"
+                data-price="<%=price%>"
+                data-stock="<%=opt_stock%>"
+                data-it_opt_cnt="<%=it_opt_cnt%>"
+                data-it_gp_cnt="<%=it_gp_cnt%>"
+                data-it_buy_qty_type="<%=it_buy_qty_type%>"
+                data-it_stock_type="<%=it_stock_type%>"
+                data-it_id="<%=it_id%>"
+              />
+              <a class="count_plus"></a>
+            </p>
+            <p class="append_price_del">
+              <span class="append_price"
+                ><%=price*it_buy_qty_min%><b>원</b></span
+              >
+              <a class="opt_del" data-opt_id="<%=opt_id%>"></a>
+            </p>
+          </div>
+        </script>
+
+        <style>
+          .opt_popup {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+          }
+          .opt_tobe {
+            color: #888;
+          }
+          .opt_soldout {
+            color: #888;
+          }
+
+          .append_count {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: row;
+            width: 100px;
+            height: 24px;
+            background-color: #fff;
+            border: 1px solid #c2c7cc;
+            margin-top: 5px;
+          }
+          .append_count .opt_cnt {
+            display: inline-block;
+            border: none;
+            padding: 0px;
+            width: 14px !important;
+            height: 22px !important;
+            line-height: 22px;
+            color: #000;
+            vertical-align: top;
+            appearance: none;
+            border: none;
+          }
+          .append_count .opt_cnt:focus {
+            outline: none;
+          }
+          .append_count .count_plus {
+            display: inline-block;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            background-color: #fff;
+            background: url(/skin/demo/img/pl_mi.png) no-repeat;
+            background-position: -24px -0px;
+          }
+          .append_count .count_plus:after {
+            content: "+";
+            display: block;
+            clear: both;
+            font-size: 12px;
+            color: #fff;
+          }
+          .append_count .count_minus {
+            display: inline-block;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            background-color: #fff;
+            background: url(/skin/demo/img/pl_mi.png) no-repeat;
+            background-position: -0px -0px;
+          }
+          .append_count .count_minus:after {
+            content: "-";
+            display: block;
+            clear: both;
+            font-size: 12px;
+            color: #fff;
+          }
+
+          .append_opt_name {
+            color: #666;
+            font-size: 12px;
+          }
+          .append_box {
+            margin-top: -1px;
+            position: relative;
+            padding: 15px;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            width: 100%;
+            border: solid 1px #e5e5e5;
+            background-color: #f4f4f4;
+          }
+          .append_price {
+            display: inline-block;
+            vertical-align: middle;
+            color: #d32f2f;
+            font-size: 16px;
+            font-family: "Noto Sans KR", sans-serif;
+            font-weight: bold;
+            line-height: 31px;
+            height: 31px;
+          }
+          .opt_del {
+            margin-left: 7px;
+            display: inline-block;
+            vertical-align: middle;
+            cursor: pointer;
+            padding: 0px;
+            padding: 0px;
+            width: 26px;
+            height: 26px;
+            background: url("/skin/demo/img/cart_del.png") no-repeat;
+          }
+          .append_price_del {
+            display: inline-block;
+            padding: 0px;
+            margin: 0px;
+            vertical-align: middle;
+            height: 31px;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+          }
+          .opt_cal_list {
+            padding-top: 5px;
+          }
+
+          .opt_select {
+            width: 100%;
+            margin-bottom: 5px;
+            border: solid 1px #dcdcdc;
+            position: relative;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+          }
+          .opt_select.on {
+            border: solid 1px #666;
+          }
+          .opt_select .opt_title {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            width: 100%;
+            color: #666;
+            font-size: 12px;
+            height: 38px;
+            line-height: 38px;
+            padding-left: 10px;
+            padding-right: 20px;
+            position: relative;
+            cursor: pointer;
+          }
+          .opt_select .opt_title:after {
+            content: "";
+            display: block;
+            background: transparent url(/skin/nfor/img/layout.png) no-repeat;
+            background-size: 320px auto;
+            background-position: -100px -400px;
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            right: 4px;
+            top: 7px;
+          }
+
+          .opt_list {
+            display: none;
+            height: 241px;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+            position: absolute;
+            left: -1px;
+            top: 38px;
+            z-index: 88;
+            background-color: #fff;
+            width: 100%;
+            border: solid 1px #dcd3d3;
+          }
+          .opt_list li {
+            border-bottom: solid 1px #e5e5e5;
+            font-size: 12px;
+            padding: 12px 10px 10px 10px;
+            cursor: pointer;
+          }
+          .opt_list li div {
+            overflow: hidden;
+          }
+          .opt_list li b {
+            color: #ff0000;
+            font-family: "Noto Sans KR", sans-serif;
+          }
+          .opt_list li.on {
+            background: url(/skin/nfor/img/layout.png) no-repeat 100% -550px;
+            background-size: 320px auto;
+            padding-right: 40px;
+          }
+          #right_banner{
+            margin: 350px -740px 0px 0px;
+          }
+        </style>
+      </div>
+    </div>
+    <div id="footer"></div>
+
+    <div id="left_banner">
+      <ul></ul>
+    </div>
+    <div id="right_banner">
+      <ul></ul>
+      <div class="today_view">
+        <ul>
+          <li class="today_view_li">
+            <a href="#" class="today_item">
+              <span class="today_ico"
+                ><i class="fa-regular fa-heart"></i>
+              </span>
+              <span class="today_tit">찜한상품</span>
+            </a>
+          </li>
+          <li class="today_view_li">
+            <a href="#" class="today_item">
+              <span class="today_ico"
+                ><i class="fa-regular fa-cart-arrow-down"></i>
+              </span>
+              <span class="today_tit">장바구니 <b>0</b></span>
+            </a>
+          </li>
+          <li class="today_view_li">
+            <a href="#" class="recent_view_tit">최근본상품<b>0</b></a>
+            <ul class="recent_list_ul"></ul>
+          </li>
+        </ul>
+      </div>
+      <!-- 
+<div class="top_bottom">
+	<a href="javascript:scroll_move('top')" class="scrollbtn"> <img src="/skin/demo/img/top.png" alt=""></a>
+	<a href="javascript:scroll_move('bottom')" class="scrollbtn"><img src="/skin/demo/img/bown.png" alt=""></a>
+</div>	 -->
+    </div>
+
+    <!-- 부트스트렙 -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
