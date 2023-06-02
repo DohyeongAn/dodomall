@@ -39,4 +39,3 @@ $(document).on("click", ".tabmenu li", function () {
   $(".tab-cont").hide();
   $($(this).find("a").data("tab")).show();
 });
-

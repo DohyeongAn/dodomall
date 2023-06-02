@@ -373,42 +373,7 @@ footer {
 
 /* 메인 화면  */
 /* 메인 베너 슬라이드 */
-#main_slide_img {
-  width: 100%;
-  margin-bottom: 100px;
-}
-.carousel-control-prev {
-  padding-right: 11vw;
-  box-sizing: border-box;
-}
-.carousel-control-next {
-  padding-left: 11vw;
-  box-sizing: border-box;
-}
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-image: none;
-}
 
-.carousel-control-prev-icon:after,
-.carousel-control-next-icon:after {
-  content: "\f053";
-  font-family: "Font Awesome 5 Free", sans-serif;
-  font-size: 3vw;
-  font-weight: 400;
-  color: black;
-}
-
-.carousel-control-next-icon:after {
-  content: "\f054";
-}
-
-.carousel-indicators button {
-  width: 10px !important;
-  height: 10px !important;
-  border-radius: 50%;
-  background-color: red !important;
-}
 
 /*메인상품탭*/
 .main_list {
@@ -1024,9 +989,42 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* liveTv */
 #live_top_bannder{
-background-color: rgba(0, 0, 0, .1);
+/* background-color: rgba(0, 0, 0, .1); */
 width: 100%;
 height: 350px;
+display: flex;
+
+}
+.center{
+  width: 90%;
+  margin: auto;
+}
+.center div {
+  display: block;
+  margin-block-start: 10px;
+  margin-block-end: 10px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  }
+
+.center img {
+  width: 250px;
+  height: 250px;
+}
+
+.center .slick-center div {
+  -moz-transform: scale(1.08);
+  -ms-transform: scale(1.08);
+  -o-transform: scale(1.08);
+  -webkit-transform: scale(1.08);
+  color: #e67e22;
+  opacity: 1 !important;
+  transform: scale(1.08);
+}
+.center div {
+  opacity: 0.7;
+  transition: all 300ms ease;
 }
 #live_left_wrap{
   background-color: rgba(255, 0, 0, .1);

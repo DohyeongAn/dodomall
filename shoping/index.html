@@ -27,9 +27,12 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
+    <!-- 스와이퍼 js-->
+    <script src="swiper-bundle.js"></script>
     <!-- 리셋 css -->
     <link rel="stylesheet" href="resetcss.css" />
-
+  <!-- 스와이퍼 css -->
+  <link rel="stylesheet" href="swiper-bundle.css">
     <!-- 메인 css -->
     <link rel="stylesheet" href="style.css" />
 
@@ -41,7 +44,7 @@
   <body>
     <div id="header"></div>
     <div id="main_slide_img">
-      <div id="carouselExampleIndicators" class="carousel slide">
+      <!-- <div id="carouselExampleIndicators" class="carousel slide">
         <div class="carousel-indicators">
           <button
             type="button"
@@ -105,7 +108,26 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
+      </div> -->
+    <!-- Slider main container -->
+    <div class="swiper">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide"><img src="img/main_banner_img1.png" alt=""></div>
+        <div class="swiper-slide"><img src="img/main_banner_img2.png" alt=""></div>
+        <div class="swiper-slide"><img src="img/main_banner_img3.png" alt=""></div>
       </div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+    
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    
+      <!-- If we need scrollbar -->
+      <!-- <div class="swiper-scrollbar"></div> -->
+    </div>
     </div>
     <!-- <div class="item_list_wrap wrap">
       <div class="list_type type1">
@@ -668,5 +690,29 @@
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"
     ></script>
+    <!-- slider -->
+    <script>
+      const swiper = new Swiper('.swiper', {
+          // Optional parameters
+          direction: 'horizontal',
+          loop: true,
+  
+          // If we need pagination
+          pagination: {
+              el: '.swiper-pagination',
+          },
+  
+          // Navigation arrows
+          navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+          },
+  
+          // And if we need scrollbar
+          // scrollbar: {
+          //     el: '.swiper-scrollbar',
+          // },
+          });
+    </script>
   </body>
 </html>
