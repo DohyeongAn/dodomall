@@ -1109,6 +1109,7 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 100%;
     height: 350px;
     display: flex;
+    border-bottom: 1px solid #e3e5e8;
 
 }
 
@@ -1153,6 +1154,8 @@ input[type="number"]::-webkit-inner-spin-button {
     float: left;
     border-right: 1px solid #e3e5e8;
     border-left: 1px solid #e3e5e8;
+    box-sizing: border-box;
+
 }
 
 #live_right_wrap {
