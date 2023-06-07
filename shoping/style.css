@@ -239,7 +239,6 @@ header {
 }
 
 .category_popup .all_menu_wrap > li {
-    display: grid;
     float: left;
     display: table-cell;
     height: 100%;
@@ -556,8 +555,7 @@ footer {
     display: inline-block;
     margin-right: 4px;
     color: #e83862;
-    font-family: Tahoma;
-}
+    font-family: 'Noto Sans KR', sans-serif;}
 
 .type_1 .border .it_info .it_price_info .it_price {
     display: inline-block;
@@ -577,8 +575,7 @@ footer {
 .type_1 .border .it_info .it_price_info .it_price .it_price2 {
     display: block;
     font-weight: 700;
-    font-family: Tahoma;
-    line-height: 15px;
+    font-family: 'Noto Sans KR', sans-serif;    line-height: 15px;
     color: black;
 }
 
@@ -708,8 +705,7 @@ footer {
 .item_list .sub_title {
     font-size: 21px;
     font-weight: bold;
-    font-family: "NSKL";
-    padding-top: 7px;
+    font-family: 'Noto Sans KR', sans-serif;    padding-top: 7px;
 }
 
 .item_list .sub_title span {
@@ -804,7 +800,7 @@ footer {
     position: relative;
     width: 20px;
     height: 17px;
-    background: url("img/zzim_ico_off.png") no-repeat;
+    /*background: url("img/zzim_ico_off.png") no-repeat;*/
     line-height: 200px;
     vertical-align: middle;
     cursor: pointer;
@@ -824,7 +820,7 @@ footer {
     height: 50px;
     margin-left: -80px;
     padding-top: 111px;
-    background: url("img/zzim_ico_on.png") no-repeat;
+    /*background: url("img/zzim_ico_on.png") no-repeat;*/
 }
 
 /* 부트스트랩 배송지우기 */
@@ -884,7 +880,6 @@ footer {
 
 .today_view .today_tit b {
     color: #f27935;
-    font-family: Verdana;
     padding-left: 0;
     vertical-align: -1px;
     font-family: "Noto Sans KR", sans-serif;
@@ -915,7 +910,6 @@ footer {
     font-size: 12px;
     display: block;
     padding: 10px;
-    font-weight: normal;
     color: black;
     font-weight: bolder;
     font-family: "Noto Sans KR", sans-serif;
@@ -923,8 +917,7 @@ footer {
 
 .today_view .recent_view_tit b {
     color: #f27935;
-    font-family: Verdana;
-    padding-left: 0;
+    font-family: 'Noto Sans KR', sans-serif;    padding-left: 0;
     vertical-align: -1px;
 }
 
@@ -1053,10 +1046,8 @@ input[type="number"]::-webkit-inner-spin-button {
     color: #fff;
     text-align: center;
     line-height: 50px;
-    font-family: "NanumGothicBold", Sans-serif;
-    -webkit-font-smoothing: antialiased;
+    font-family: 'Noto Sans KR', sans-serif;    -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-smooth: antialiased;
     font-weight: normal;
     opacity: 0.6;
 }
@@ -1079,7 +1070,7 @@ input[type="number"]::-webkit-inner-spin-button {
     position: relative;
     width: 20px;
     height: 17px;
-    background: url("zzim_ico_off.png") no-repeat;
+    /*background: url("zzim_ico_off.png") no-repeat;*/
     line-height: 200px;
     vertical-align: middle;
     cursor: pointer;
@@ -1099,7 +1090,7 @@ input[type="number"]::-webkit-inner-spin-button {
     height: 50px;
     margin-left: -80px;
     padding-top: 111px;
-    background: url("img/zzim_ico_on.png") no-repeat;
+    /*background: url("img/zzim_ico_on.png") no-repeat;*/
 }
 
 
