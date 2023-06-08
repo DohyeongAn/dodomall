@@ -179,6 +179,7 @@ header {
   width: 500px;
   padding-left: 25px;
   box-sizing: border-box;
+  height: 50px;
 }
 
 #category_menu a {
@@ -1103,8 +1104,17 @@ input[type="number"]::-webkit-inner-spin-button {
   height: 350px;
   display: flex;
   border-bottom: 1px solid #e3e5e8;
+  border-right: 1px solid #e3e5e8;
+  border-left: 1px solid #e3e5e8;
+  position: relative;
 }
-
+#liveTvthumnail{
+ 
+}
+#live_best_wrap{
+  position: absolute;
+  top: 0;
+}
 #live_left_wrap {
   width: 186px;
   height: 1000px;
@@ -1138,6 +1148,7 @@ input[type="number"]::-webkit-inner-spin-button {
 #live_top {  
   width: 100%;
   height: 100px;
+  
 }
 #live_top img{
     width: 100%;
