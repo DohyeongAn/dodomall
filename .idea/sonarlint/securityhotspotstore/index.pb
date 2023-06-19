@@ -19,3 +19,11 @@ w
 G.idea/sonarlint/issuestore/b/4/b4a0b63ce8560bbc5de0f9995c20cc861dc2adb3,b/0/b04578cffb47b1e57970601a0cacef6081245859
 w
 G.idea/sonarlint/issuestore/4/9/496a238a6afa168dbaf6efd37bb459331589579c,6/e/6e9644ddf83ab52f39902ecdbfdf4118285ac40c
+B
+shoping/index.html,b/d/bd662cd6ff908d048986a5d9646417ed1e124022
+A
+shoping/join.html,2/f/2fa283d039cbea925e50eede979c1ac5fb73a0b4
+A
+shoping/style.css,6/b/6be9f8ecdfee360c2c33b7272025eb6f80f113f1
+C
+shoping/livetv.html,b/1/b1715594e0176a234f1c47a6d07e4c0018f76b1f
