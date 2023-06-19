@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    />
+    <style>
+      #menu_bar > ul > li > ul {
+        margin-top: 5px;
+        padding-left: 12px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="menu_bar">
+      <ul>
+        <li>
+          <a href="#"> <i class="fa-solid fa-chevron-right"></i> Home</a>
+          <ul>
+            <li><a href="#">메뉴1-1</a></li>
+            <li><a href="#">메뉴1-2</a></li>
+            <li><a href="#">메뉴1-3</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"> <i class="fa-solid fa-chevron-right"></i> Dashboard</a>
+          <ul>
+            <li><a href="#">메뉴2-1</a></li>
+            <li><a href="#">메뉴2-2</a></li>
+            <li><a href="#">메뉴2-3</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"> <i class="fa-solid fa-chevron-right"></i> Orders</a>
+          <ul>
+            <li><a href="#">메뉴3-1</a></li>
+            <li><a href="#">메뉴3-2</a></li>
+            <li><a href="#">메뉴3-3</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"> <i class="fa-solid fa-chevron-right"></i> Account</a>
+          <ul>
+            <li><a href="#">메뉴4-1</a></li>
+            <li><a href="#">메뉴4-2</a></li>
+            <li><a href="#">메뉴4-3</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // 마우스 호버 이벤트 처리
+        $("#menu_bar > ul > li").hover(
+          function () {
+            $(this).find("ul").slideDown(200).stop();
+          },
+          function () {
+            $(this).find("ul").slideUp(200).stop();
+          }
+        );
+
+        // 메뉴 클릭 이벤트 처리
+        $("#menu_bar > ul > li > a").click(function (e) {
+          e.preventDefault(); // 기본 클릭 동작 취소
+          $(this).next("ul").slideToggle(200);
+          e.stopPropagation(); // 이벤트 전파 중지
+        });
+
+        // 메뉴 바 바깥 클릭 이벤트 처리
+        $(document).click(function () {
+          $("#menu_bar > ul > li > ul").slideUp(200);
+        });
+
+        $("#menu_bar").click(function (e) {
+          e.stopPropagation();
+          // 메뉴 바 클릭 이벤트 중지
+          e.stopPropagation();
+        });
+      });
+    </script>
+  </body>
+</html>
